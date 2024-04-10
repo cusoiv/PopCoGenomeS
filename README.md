@@ -1,10 +1,11 @@
 # PopCoGenomeS
 This is the github repository for the tool PopCoGenomeS
 # Purpose
-Identifying microbial Populations as Clusters Of Genome Sweeps (PopCoGenomeS). This is built on the basis of the first part of the tool PopCOGenT, but focuses on
-1. Estimation of the recombined fractions and vertically inherited fractions of pairwise genomes
-2. Clustering genomes into (mostly) vertically inherited genome clusters
-3. Identifying microbial populations as genome-wide selective sweeps
+Identifying microbial Populations as Clusters Of Genome Sweeps (PopCoGenomeS). This is built on the basis of the first part of the tool PopCOGenT, but focuses on:
+1. Estimation of the recombined fractions and vertically inherited fractions of pairwise genomes.
+2. Clustering genomes into (mostly) vertically inherited genome clusters.
+3. Identifying microbial populations as genome-wide selective sweeps.
+
 PopCoGenomeS contrasts with the tool PopCOGenT in that PopCOGenT identifies populations as units of gene flow, thus assuming high amounts of recombination within populations, and very low vertical inheritance within populations; Meanwhile, PopCoGenomeS identifies genome clusters where the majority of the genome is vertically inherited.
 
 For more detailed information on PopCOGenT, see:
