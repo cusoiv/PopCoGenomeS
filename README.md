@@ -7,9 +7,9 @@ Identifying microbial Populations as Clusters Of Genome Sweeps (PopCoGenomeS). F
 
 A linux-based system 
 
-The required python and (most) R packages can be installed by creating a conda environment with the included PopCOGenT.yml file as follows:
+The required python and R packages can be installed by creating a conda environment with the included PopCoGenomeS.yml file as follows:
 
-conda env create -f PopCoGenomeS
+conda env create -f PopCoGenomeS.yml
 
 The PopCoGenomeS.yml file reflects the versions we used for our publication and at this time we cannot guarantee forward compatability with new versions of the dependencies.
 
