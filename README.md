@@ -35,3 +35,6 @@ Part 1: Estimation of the recombined fractions and vertically inherited fraction
 This part is in /src/PopCOGenomeS_part_1. The file to run is PopCOGenomeS.sh. Please follow the instructions to edit the config.sh file as requested.
 
 Part 2: Identifying microbial populations as genome-wide selective sweeps.
+
+This part is in /src/PopCOGenomeS_part_2. Please follow the instructions to edit the phybreak_config.sh file as requested.
+
