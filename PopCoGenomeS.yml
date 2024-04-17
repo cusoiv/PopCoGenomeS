@@ -1,0 +1,18 @@
+name: popcogenomes
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - biopython=1.79
+  - mugsy=1.2.3
+  - networkx=2.6.3
+  - numpy=1.18.1
+  - pandas=1.0.1
+  - pomegranate=0.14.4
+  - joblib=0.14.1
+  - libgcc-ng=12.2.0
+  - python=3.7.6
+  - scipy=1.4.1
+  - statsmodels=0.11.0
+  - seqkit=2.8.1
