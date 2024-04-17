@@ -17,11 +17,15 @@ A linux-based system
 
 ## Setting up work environment:
 
-The required python and R packages can be installed by creating a conda environment with the included PopCOGenomeS.yml file as follows:
+The required python and R packages can be installed by creating two conda environments with the included PopCOGenomeS.yml & PopCOGenomeS_R.yml files as follows:
     
     conda env create -f PopCoGenomeS.yml
+    conda env create -f PopCoGenomeS_R.yml
 
-The PopCoGenomeS.yml file reflects the versions we used for our publication and at this time we cannot guarantee forward compatability with new versions of the dependencies.
+The first conda environment consists of all python modules involved, as well as the tools mugsy and seqkit.
+The second conda enviroment consists of all R libraries involved, as well as the tool phyml.
+
+The PopCoGenomeS.yml and PopCoGenomeS_R.yml files reflect the versions we used for our publication and at this time we cannot guarantee forward compatability with new versions of the dependencies.
 
 We have come to notice that sometimes there is a problem with the mugsy that it is not using the perl version of the conda environment but the system perl, which can sometime lead to issues. If you run into this issue, edit the nucmer and mummerplot files (scripts invoked by mugsy) in the conda environment (under bin/MUMmer3.20) by changing '#!/usr/bin/perl' to '#!/usr/bin/env perl' in those two scripts. 
 
