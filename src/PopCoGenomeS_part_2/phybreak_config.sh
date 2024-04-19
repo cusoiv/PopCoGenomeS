@@ -6,6 +6,7 @@ genome_source='/lisc/scratch/dome/xy43/UHGG_plus4/Data/genomes' #the folder wher
 genome_ext='.fna.gz'
 pop_infile_source='/lisc/scratch/dome/xy43/UHGG_plus4/Results/PopcoGenomeS'  #where are your genome lists for each vertically-inherited cluster identified in step 1
 path_to_phybreak='/lisc/scratch/dome/xy43/UHGG_plus4/Scripts' #where is your align_and_construct_trees folder
-
+path_to_PopCoGenomeS='/lisc/user/yu/envs/popcogenomes' #path to your conda environment PopCoGenomeS
+path_to_PopCoGenomeS_R='/lisc/user/yu/envs/popcogenomes_R' #path to your conda environment for PopCoGenomeS_R
 
 

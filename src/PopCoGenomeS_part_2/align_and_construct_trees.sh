@@ -1,21 +1,10 @@
 #!/bin/bash
-#
-#SBATCH --job-name=align_and_construct_trees
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=5GB
-#SBATCH --nice=0
-#SBATCH --output=%x-%A_%a.out
-#SBATCH --error=%x-%A_%a.err
-
-#usage
-#sbatch -a 1-number of chunks align_and_construct_trees.sbatch <CONFIGFILE>
 
 PHY_CONFIG=./phybreak_config.sh
 source ${PHY_CONFIG}
 
-# The configfile is the list of clonal frames
-CONFIGFILE=$1
-OUTFOLDER_2=`awk '{if (NR=='${SLURM_ARRAY_TASK_ID}') print $1}' $CONFIGFILE`
+# The config file is the list of vertically-inherited genome clusters
+OUTFOLDER_2=$1
 
 #define directory where the script is called
 HOMEFOLDER=`pwd`
@@ -38,6 +27,7 @@ echo ${output_dir}
 cd ${project_dir}/align_and_construct_trees
 
 #Run prep code
+#module load conda
 conda activate ${path_to_PopCoGenomeS}
 sh 00_prepare_phybreak.sh
 echo Done!
