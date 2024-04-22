@@ -9,7 +9,8 @@ A directory of genomes in fasta format.
 
 # Expected outputs
 This should generate five groups of files:
-1. ${basename}.length_bias_${window_size}.txt  This is the data file containing information for all pairwise genomes
+## 1. ${basename}.length_bias_${window_size}.txt  
+   This is the data file containing information for all pairwise genomes.  
    What each column means in this file:  
    Strain 1 : genome name 1 in focal pair of genomes  
    Strain 2 : genome name 2 in focal pair of genomes  
@@ -30,18 +31,25 @@ This should generate five groups of files:
    hmm_mu: Divergence of the vertically inherited fraction, estimated by HMM  
    hmm_mnb: Divergence of the recombined fraction, estimated by HMM  
    
-2. ${basename}.length_bias.filtered.txt  
-   This is the filtered datafile for all pairwise genomes, which makes three major changes:  
+## 2. ${basename}.length_bias.filtered.txt  
+   This is the filtered datafile for all pairwise genomes, which makes three major changes compared to the complete length bias file:  
+   
    a. Pairwise genomes with the mean divergence of the recombined fraction being no more than 2.5X of the vertically-inherited fraction are omitted.     
    b. Pairwise genomes that diverge by <1500 SNPs are counted as 100% vertically inherited with divergence being 10^-5.   
    c. We cross-checked whether the MLE-estimated recombination fraction exceeded twice that determined by the HMM. If such a discrepancy occurred, we  substituted the MLE-estimated parameters with those derived from the HMM, and marked the change as 'C' in the type column.  
-   Compare to the previous length bias file, there are three extra columns:  
-   totalR:Percent genome recombined, after correction  
-   div:Divergence of the vertically inherited fraction, after correction  
-   type: whether there was a discrepency in the HMM and MLE based estimations  
-4. ${basename}_${clonal_cutoff}.cluster.tab.txt This is a table that assigns all the isolate genomes to a corresponding vertically-inherited cluster  
-5. ${basename}_cf_size_3.list The list of all vertically-inherited genome clusters with >=3 isolate genomes to be inputed to Part 2  
-6. ${basename}_XXX.txt, these are the strains in each of the vertically-inherited genome clusters in the previous list.  
+   
+   Compared to the previous length bias file, there are three extra columns:  
+   
+   totalR: Percent genome recombined, after correction  
+   div: Divergence of the vertically inherited fraction, after correction  
+   type: Whether there was a discrepency in the HMM and MLE based estimations  
+
+## 3. ${basename}_${clonal_cutoff}.cluster.tab.txt  
+   This is a table that assigns all the isolate genomes to a corresponding vertically-inherited cluster.  
+## 4. ${basename}_cf_size_3.list      
+   The list of all vertically-inherited genome clusters with >=3 isolate genomes to be inputed to Part 2.  
+## 5. ${basename}_XXX.txt
+   These are the strains in each of the vertically-inherited genome clusters in the previous list.  
    
 
 
