@@ -17,7 +17,7 @@ if you don't have access to a slurm computing cluster, you can run this as :
 
 while read line; do   
 	sh align_and_construct_trees.sh ${line}  
-<${basename}_cf_size_3.list
+done<${basename}_cf_size_3.list
 
 ## Step 2 
 ### Applies the 5X rule to all vertically-inherited genome clusters and its subclusters
