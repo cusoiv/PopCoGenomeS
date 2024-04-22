@@ -16,7 +16,7 @@ The ${basename}_cf_size_3.list is the output from the previous part 1 that consi
 if you don't have access to a slurm computing cluster, you can run this as :
 
 while read line; do   
-	sh align_and_construct_trees.sh ${line}  
+&emsp;&emsp;sh align_and_construct_trees.sh ${line}  
 done<${basename}_cf_size_3.list
 
 ## Step 2 
