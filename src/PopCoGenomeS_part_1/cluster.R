@@ -1,12 +1,13 @@
 library(dplyr)
 library(micropan)
 
-#setwd("C:/Users/Xiaoqian/Desktop/pop_gen/PopcoGenomeS/")
 args = commandArgs(trailingOnly=TRUE)
 basename=args[1]
 clonal_cutoff=args[2]
 window_size=args[3]
 final_output_dir=args[4]
+
+clonal_cutoff=as.numeric(clonal_cutoff)
 
 #Read in length bias file
 lbfile=read.table(paste0(final_output_dir,basename,'.length_bias_',window_size,'.txt'),sep='\t',header = T,stringsAsFactors = F)
@@ -14,23 +15,23 @@ lbfile=read.table(paste0(final_output_dir,basename,'.length_bias_',window_size,'
 #Two types of filtering
 
 lbfile_filter=lbfile %>% 
-  filter(mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) %>%
+  filter(mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) %>%
   mutate(totalR=sim_fr,div=mu_div) %>%
   mutate(totalR=case_when(sim_fr/hmm_fr>2 ~ hmm_fr, TRUE ~ sim_fr),
          div=case_when(sim_fr/hmm_fr>2 ~ hmm_mu, TRUE ~ mu_div),
          type=case_when(sim_fr/hmm_fr>2 ~ 'C', TRUE ~ 'NC')) %>%
-  mutate(totalR=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1  ~ 0, TRUE ~ totalR),
-         div=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1 ~ 10^-5, TRUE ~ div))
+  mutate(totalR=case_when(Initial.divergence.raw < 1500/Alignment.size.raw  ~ 0, TRUE ~ totalR),
+         div=case_when(Initial.divergence.raw < 1500/Alignment.size.raw ~ 10^-5, TRUE ~ div))
 
 lbfile_filter_1=lbfile %>% 
-  mutate(totalR=case_when(sim_fr/hmm_fr>=2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ hmm_fr, 
+  mutate(totalR=case_when(sim_fr/hmm_fr>=2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ hmm_fr, 
                           TRUE ~ sim_fr),
-         div=case_when(sim_fr/hmm_fr>2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ hmm_mu, 
-                       sim_fr/hmm_fr<2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ mu_div,
-                       TRUE ~ Initial.divergence.iter1),
+         div=case_when(sim_fr/hmm_fr>2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ hmm_mu, 
+                       sim_fr/hmm_fr<2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ mu_div,
+                       TRUE ~ Initial.divergence.raw),
          type=case_when(sim_fr/hmm_fr>2 ~ 'C', TRUE ~ 'NC')) %>%
-  mutate(totalR=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1 ~ 0, TRUE ~ totalR),
-         div=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1 ~ 10^-5, TRUE ~ div)) 
+  mutate(totalR=case_when(Initial.divergence.raw < 1500/Alignment.size.raw ~ 0, TRUE ~ totalR),
+         div=case_when(Initial.divergence.raw < 1500/Alignment.size.raw ~ 10^-5, TRUE ~ div)) 
 
 #Select and prepare for clustering
 lbfile_filter_select=lbfile_filter[,c("Strain.1","Strain.2","totalR")]
@@ -38,8 +39,8 @@ names(lbfile_filter_select)=c('Dbase','Query','Distance')
 lbfile_filter_select$Distance=lbfile_filter_select$Distance/100
 
 #cluster with average clustering
-if (min(lbfile_filter_select$Distance)<=0.5){
-  z=as.data.frame(bClust(lbfile_filter_select,linkage = "average",threshold = clonal_cutoff))
+if (min(lbfile_filter_select$Distance)<=(1-clonal_cutoff)){
+  z=as.data.frame(bClust(lbfile_filter_select,linkage = "average",threshold = (1-clonal_cutoff)))
   names(z)='cluster'
   z$strain=rownames(z)
   z2=split(z,z$cluster)
@@ -57,11 +58,11 @@ if (!is.null(lbfile_filter_list_cl)){
     total_strains=unique(c(lb$Strain.1,lb$Strain.2))
     lb_in_list=lapply(lbfile_filter_list_cl,function(x) {
       lb_in=lb %>% filter(Strain.1 %in% x$strain & Strain.2 %in% x$strain) %>% select(div,totalR,Strain.1,Strain.2); lb_in})
-	print (lb_in_list)
+
     lb_not_in_list=lapply(lbfile_filter_list_cl,function(x) {
       lb_not_in=lb %>% filter(Strain.1 %in% x$strain & ! (Strain.2 %in% x$strain) |
                                 !(Strain.1 %in% x$strain) &  Strain.2 %in% x$strain) %>% select(div,totalR,Strain.1,Strain.2);lb_not_in})
-	print (lb_not_in_list)
+
     lb_in_list_clean=mapply(function(x,y) {if (nrow(y)>0) {x=x %>% filter(x$div < mean(y$div))};x},
                             lb_in_list,lb_not_in_list, SIMPLIFY = F)
     lbfile_filter_list_cl_all_clean=mapply(function(x,z){x %>% filter(x$strain %in% unique(c(z$Strain.1,z$Strain.2)))},

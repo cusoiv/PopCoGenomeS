@@ -1,5 +1,5 @@
 # Base name for final output files ust a prefix to identify your outputs.
-base_name='example'
+basename='example'
 
 # Output directory for the final output files.
 
@@ -30,8 +30,11 @@ mkdir -p ${alignment_dir}
 # window size to use
 window_size=500
 
-# hmm cutoff for performing hmm
-hmm_cutoff=0.1
-
-# cutoff for cluster of strains to be considered to share a clonal frame, ranging from 0-1
+# cutoff for a cluster of strains to be considered as vertically inherited, ranging from 0-1
 clonal_cutoff=0.5
+
+# Path to the PopCoGenomeS conda environment
+path_to_PopCoGenomeS='/lisc/user/yu/envs/popcogenomes'
+
+# Path to the PopCoGenomeS_R conda environment
+path_to_PopCoGenomeS_R='/lisc/user/yu/envs/popcogenomes_R'

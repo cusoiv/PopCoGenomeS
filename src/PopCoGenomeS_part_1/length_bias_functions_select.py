@@ -18,7 +18,6 @@ def align_and_calculate_length_bias(genome_1_file,
                                     genome_2_file,
                                     alignment_dir,
                                     window_size, 
-                                    hmm_cutoff,
                                     random_seed,
                                     keep_alignments,
                                     final_output_dir):
@@ -34,7 +33,6 @@ def align_and_calculate_length_bias(genome_1_file,
                           genome_1_file,
                           genome_2_file,
                           window_size,
-                          hmm_cutoff,
                           length_bias_file,
    #                       block_dg_file_1,
                           final_output_dir)
@@ -114,7 +112,6 @@ def calculate_length_bias(input_alignment,
                           genome_1_file,
                           genome_2_file,
                           window_size,
-                          hmm_cutoff,
                           output_file_1,
 #                          output_file_2,
                           final_output_dir):
@@ -127,7 +124,6 @@ def calculate_length_bias(input_alignment,
                              g1size=g1size,
                              g2size=g2size,
                              window_size=window_size,
-                             hmm_cutoff=hmm_cutoff,
                              final_output_dir=final_output_dir)
         with open(output_file_1, 'w') as outfile:
             outfile.write(edge + '\n')
@@ -139,7 +135,6 @@ def get_transfer_measurement(alignment,
                              g1size,
                              g2size,
                              window_size,
-                             hmm_cutoff,
                              final_output_dir,
                              min_block_size=0,      #HERBOLD CHANGE
 #                             filtering_window=1000):
@@ -151,7 +146,6 @@ def get_transfer_measurement(alignment,
     strain2 = strain2.replace('.maf', '')
     all_blocks, prefilter_total_len = get_concatenated_alignment(alignment)
     window_size=int(window_size)
-    hmm_cutoff=float(hmm_cutoff)
 
     # Filter alignment to split into subblocks at any point where there are at least 2 gaps
     for prefilter_s1, prefilter_s2 in all_blocks:
@@ -275,7 +269,7 @@ def get_transfer_measurement(alignment,
     hmm_fr=np.nan
     hmm_mu=np.nan
     hmm_mnb=np.nan
-    if mu/window_size < hmm_cutoff and mu!=0:
+    if  mu!=0:
         RC=run_hmm(block_div_genome_1,window_size,mle_output)
         RC.pop(0)
         hmm_fc=RC.count('C')/len(RC)*100

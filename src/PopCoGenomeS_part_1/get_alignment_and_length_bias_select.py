@@ -49,10 +49,7 @@ def main():
                         default=500,
                         type=int,
                         help='window size for diversity calculation')
-    parser.add_argument('--hmm_cutoff',
-                        default=100,
-                        type=float,
-                        help='cutoff to run hmm')
+
 
     args = parser.parse_args()
     check_inputs(args)
@@ -63,14 +60,13 @@ def main():
                                                   args.genome_ext,
                                                   args.alignment_dir,
                                                   args.window_size,
-                                                  args.hmm_cutoff,
                                                   args.keep_alignments,
                                                   args.final_output_dir)
     header = ['Strain 1',
                  'Strain 2',
-                 'Initial divergence iter1',
+                 'Initial divergence raw',
                  'Initial divergence',
-                 'Alignment size iter1',
+                 'Alignment size raw',
                  'Alignment size',
                  'Genome 1 size',
                  'Genome 2 size',
@@ -113,13 +109,12 @@ def run_on_single_machine(threads,
                           genome_extension,
                           alignment_dir,
                           window_size,
-                          hmm_cutoff,
                           keep_alignments,
                           final_output_dir):
     
     renamed_genomes = [rename_for_mugsy(g) for g in glob.glob(genome_directory + '*' + genome_extension)]
     pairs_and_seeds = [(g1, g2, random.randint(1, int(1e9))) for g1, g2 in combinations(renamed_genomes, 2)]
-    length_bias_files = Parallel(n_jobs=threads)(delayed(align_and_calculate_length_bias)(g1, g2, alignment_dir, window_size, hmm_cutoff, seed, keep_alignments, final_output_dir) for g1, g2, seed in pairs_and_seeds)
+    length_bias_files = Parallel(n_jobs=threads)(delayed(align_and_calculate_length_bias)(g1, g2, alignment_dir, window_size, seed, keep_alignments, final_output_dir) for g1, g2, seed in pairs_and_seeds)
     return length_bias_files
 
 if __name__ == '__main__':
