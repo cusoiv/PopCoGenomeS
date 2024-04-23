@@ -13,7 +13,6 @@ ref_iso = ""
 ref_contig = ""
 len_block_threshold = 0
 gap_prop_thresh = 0.0
-MUGSY_source = ""
 phyML_loc = ""
 phyML_properties = ""
 
@@ -44,8 +43,6 @@ for line in parameter_file:
 			len_block_threshold = int(line[1].split(" #")[0])
 		elif line[0] == "gap_prop_thresh":
 			gap_prop_thresh = float(line[1].split(" #")[0])
-		elif line[0] == "MUGSY_source":
-			MUGSY_source = line[1].split(" #")[0]
 		elif line[0] == "phyML_loc":
 			phyML_loc = line[1].split(" #")[0]
 		elif line[0] == "phyML_properties":

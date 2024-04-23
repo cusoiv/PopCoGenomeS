@@ -11,5 +11,3 @@ ref_contig = .ref_contig #note that dash '-' characters are converted to undersc
 
 len_block_threshold = 1000 #minimum length of a degapped alignment block 
 gap_prop_thresh = 0.5 #maximum proportion of alignment block that can be '-'
-
-MUGSY_source = source /lisc/user/yu/envs/popcogent_pt1/bin/mugsyenv.sh #location of source file for MUGSY alignment tool

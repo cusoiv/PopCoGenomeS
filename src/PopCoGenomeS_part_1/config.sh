@@ -8,14 +8,14 @@ final_output_dir=./output/
 mkdir -p ${final_output_dir}
 
 # Path to genome files. (make sure it ends in a "/")
-genome_dir=./genomes/
+genome_dir=../example_genomes/
 
 # Genome file filename extension.
 genome_ext=.fna
 
 # Are you running on a single machine? Please specify the number of threads to run.
 # This can, at maximum, be the number of logical cores your machine has.
-num_threads=1
+num_threads=4
 
 # Whether to keep alignments after length bias is calculated. 
 # Alignment files can be 10MB each and thus a run on 100 genomes can take up on the order of 50 GB of space if alignment files are not discarded. 

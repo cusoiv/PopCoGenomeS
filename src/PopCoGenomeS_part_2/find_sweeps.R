@@ -15,14 +15,14 @@ lbfile=read.table(paste0(basename,'.length_bias_500.txt'),sep='\t',header = T)
 
 #filter
 lbfile_1=lbfile%>% 
-  mutate(totalR=case_when(sim_fr/hmm_fr>=2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ hmm_fr, 
+  mutate(totalR=case_when(sim_fr/hmm_fr>=2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ hmm_fr, 
                           TRUE ~ sim_fr),
-         div=case_when(sim_fr/hmm_fr>2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ hmm_mu, 
-                       sim_fr/hmm_fr<2 & (mnb_div/mu_div>2.5 | Initial.divergence.iter1 < 1500/Alignment.size.iter1) ~ mu_div,
-                       TRUE ~ Initial.divergence.iter1),
+         div=case_when(sim_fr/hmm_fr>2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ hmm_mu, 
+                       sim_fr/hmm_fr<2 & (mnb_div/mu_div>2.5 | Initial.divergence.raw < 1500/Alignment.size.raw) ~ mu_div,
+                       TRUE ~ Initial.divergence.raw),
          type=case_when(sim_fr/hmm_fr>2 ~ 'C', TRUE ~ 'NC')) %>%
-  mutate(totalR=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1 ~ 0, TRUE ~ totalR),
-         div=case_when(Initial.divergence.iter1 < 1500/Alignment.size.iter1 ~ 10^-5, TRUE ~ div)) 
+  mutate(totalR=case_when(Initial.divergence.raw < 1500/Alignment.size.raw ~ 0, TRUE ~ totalR),
+         div=case_when(Initial.divergence.raw < 1500/Alignment.size.raw ~ 10^-5, TRUE ~ div)) 
 
 #loop through trees for all vertically-inherited clusters 
 cc_list={}
