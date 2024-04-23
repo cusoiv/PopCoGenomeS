@@ -22,8 +22,9 @@ done<${basename}_cf_size_3.list
 ## Step 2 
 ### Applies the 5X rule to all vertically-inherited genome clusters and its subclusters
 
-This requires the output trees from Step 1, as well as the ${basename}_cf_size_3.list and ${basename}.length_bias_${window_size}.txt files to all be present in the same folder
+This requires the output trees from Step 1, as well as the ${basename}\_cf_size_3.list and ${basename}.length_bias_${window_size}.txt files to all be present in the same folder
 
+conda activate ${path_to_PopCoGenomeS_R}  
 Rscript find_sweeps.R ${basename} ${path_to_folder_with_files}
 
 This should return the output ${basename}_sweeps.txt
