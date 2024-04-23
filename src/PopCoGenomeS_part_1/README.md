@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Part 1
 This part calculates the vertically-inherited fraction for each pair of genomes and then generates clusters of genomes that are vertically inherited at a user's defined cutoff. 
 
@@ -77,6 +76,3 @@ This should generate five groups of files:
 ## 5. ${basename}_XXX.txt
    These are the strains in each of the vertically-inherited genome clusters in the previous list.  
    
-
-
->>>>>>> 3502b2b55a1817eb9440aaede6aea7ff21e64d92
