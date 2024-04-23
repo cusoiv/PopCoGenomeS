@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # PopCoGenomeS part 2
 This part performs tree construction for each vertically-inherited cluster and eventually outputs a list of sweeps according to the 5X rule.
 # Usage
@@ -59,4 +58,4 @@ conda activate ${path_to_PopCoGenomeS_R}
 Rscript find_sweeps.R ${basename} ${path_to_folder_with_files}
 
 This should return the output ${basename}_sweeps.txt
->>>>>>> 3502b2b55a1817eb9440aaede6aea7ff21e64d92
+
