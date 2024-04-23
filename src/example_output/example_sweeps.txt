@@ -1,0 +1,4 @@
+vertical_cluster_name	sweep_id	sweep_genome
+example_cf_001	1	OP41wA13
+example_cf_001	1	GCA_027664105
+example_cf_001	1	GUT_GENOME239778
