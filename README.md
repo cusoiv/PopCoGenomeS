@@ -12,7 +12,7 @@ For more detailed information on PopCOGenT, see:
 https://github.com/philarevalo/PopCOGenT/tree/master
 
 # Suitability
-We suggest applying PopCoGenomeS to a collection of genomes from the same species. Since the identification of genome-wide selective sweeps could be confounded by repeated sampling of the same person/host, we suggest that the group of genomes to apply this tool be dereplicated according to host ids. Also, as this tool relies on pairwise genome alignments, we caution against applying the tool to tens of thousands of genomes simultaneously. It is suggested to not apply the tool to >300 genomes at once. If you want to quickly check if there are possible genome-wide sweeps in a very large dataset, we suggest subsampling the collection of genomes randomly as a start. 
+We suggest applying PopCoGenomeS to a collection of genomes from the same species. Since the identification of genome-wide selective sweeps could be confounded by repeated sampling of the same person/host, we suggest that the group of genomes to apply this tool be dereplicated according to host ids. Also, as this tool relies on pairwise genome alignments, we caution against applying the tool to tens of thousands of genomes simultaneously. It is suggested to not apply the tool to >300 genomes at once. If you want to quickly check if there are possible genome-wide sweeps in a very large dataset, we suggest randomly subsampling the collection of genomes down to ~200 as a start. 
 
 # Dependencies
 ## System requirement: 
