@@ -57,5 +57,9 @@ This requires the output trees from Step 1, as well as the ${basename}\_cf_size_
 conda activate ${path_to_PopCoGenomeS_R}  
 Rscript find_sweeps.R ${basename} ${path_to_folder_with_files}
 
-This should return the output ${basename}_sweeps.txt
+This should return the output ${basename}_sweeps.txt.  
+This file consists of three columns:
+1. The name of the vertically-inherited genome cluster that the sweep belongs to.
+2. The sweep_id of the sweep within each vertically-inherited genome cluster. Note that if the entire vertically-inherited genome cluster is a genome-wide sweep, then this id will be cf.
+3. The genomes in each sweep.  
 
