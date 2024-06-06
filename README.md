@@ -16,7 +16,7 @@ We suggest applying PopCoGenomeS to a collection of genomes from the same specie
 
 # Dependencies
 ## System requirement: 
-A linux-based system 
+A linux-based system. The typical installation time for the conda installation should take between 30mins - 1h. 
 
 ## Setting up work environment:
 
