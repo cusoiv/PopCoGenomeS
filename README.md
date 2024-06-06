@@ -35,13 +35,13 @@ We have come to notice that sometimes there is a problem with the mugsy that it 
 
 # Usage
 
-This pipeline is suitable with isolate genomes with N50>50K. We provide a workflow consisting of two modules, which allows the user to start from a folder of genomes (in fasta format) to a list of identified genome-wide sweeps. We provide an example folder and an example output folder for you to test and run the pipeline.
+This pipeline is suitable with isolate genomes with N50>50K. We provide a workflow consisting of two modules, which allows the user to start from a folder of genomes (in fasta format) to a list of identified genome-wide sweeps. We provide an example folder and an example output folder for you to test and run the pipeline. 
 
 Part 1: Estimation of the recombined fractions and vertically inherited fractions of pairwise genomes & Clustering genomes into (mostly) vertically inherited genome clusters.
 
-This part is in /src/PopCOGenomeS_part_1. The file to run is PopCOGenomeS.sh. Please follow the instructions to edit the config.sh file as requested.
+This part is in /src/PopCOGenomeS_part_1. The file to run is PopCOGenomeS.sh. Please follow the instructions to edit the config.sh file as requested. Depending on the number of cores assigned, the run time of the genomes in the example folder will vary. But it should take around 1hr to run on a single core machine.
 
 Part 2: Identifying microbial populations as genome-wide selective sweeps.
 
-This part is in /src/PopCOGenomeS_part_2. Please follow the instructions to edit the phybreak_config.sh file as requested.
+This part is in /src/PopCOGenomeS_part_2. Please follow the instructions to edit the phybreak_config.sh file as requested. This should take less than 30 mins for the example dataset.
 
