@@ -180,8 +180,15 @@ for (i in 1:nrow(folder_list_all)){
         }
         if (ratio >=5){
           sweep_df=data.frame(sweep_id='cf',sweep_genome=strains)
+          if (length(sweep_tips)==0){
+            cc_list[[i]] = sweep_df
+            names(cc_list)[i]=folder_list_all$V1[i] 
+          }
+          else {
+            
           cc_list[[i]]=bind_rows(cc_list[[i]],sweep_df)
           names(cc_list)[i]=folder_list_all$V1[i]
+          }
         }
   }
 
