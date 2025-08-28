@@ -1,8 +1,15 @@
 # Part 1
 This part calculates the vertically-inherited fraction for each pair of genomes and then generates clusters of genomes that are vertically inherited at a user's defined cutoff. 
 
+There are two ways to run this tool, one is a single machine mode, which means that this can be run on any linux computer, with the number of threads (cores) used being up to the number of cores available on the computer. For larger datasets (i.e. >100 genomes), we now offer a method so that it can be spread across different nodes on slurm to speed up the process. 
+
 # Usage
-Edit config.sh according to the instructions in the file, and then run PopCoGenomeS.sh
+Edit config.sh according to the instructions in the file, and then:
+
+For single machine mode, run PopCoGenomeS.sh
+
+For slurm array mode, run 01_PopCOGenomeS_array.sh, and after the 01 step finishes, run the 02_PopCOGenomeS_cluster.sh. We also provide the example code for submitting the two steps as slurm arrays in 
+submit_01_popcogenomes_array.sh and submit_02_popcogenomes_cluster.sh.
 
 # Input
 A directory of genomes in fasta format.
