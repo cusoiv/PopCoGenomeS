@@ -10,7 +10,7 @@ final_output_dir=args[4]
 clonal_cutoff=as.numeric(clonal_cutoff)
 
 #Read in length bias file
-lbfile=read.table(paste0(final_output_dir,basename,'.length_bias_',window_size,'.txt'),sep='\t',header = T,stringsAsFactors = F)
+lbfile=read.table(paste0(final_output_dir,'/',basename,'.length_bias_',window_size,'.txt'),sep='\t',header = T,stringsAsFactors = F)
 
 #Two types of filtering
 
@@ -91,19 +91,19 @@ if (!is.null(lbfile_filter_list_cl)){
 
 #1. The filtered length bias file 
 colnames(lbfile_filter) <- gsub("\\.", " ", colnames(lbfile_filter))
-write.table(lbfile_filter,paste0(final_output_dir, basename,'.length_bias.filtered.txt'), sep="\t", quote = FALSE, row.names = FALSE)
+write.table(lbfile_filter,paste0(final_output_dir, '/',basename,'.length_bias.filtered.txt'), sep="\t", quote = FALSE, row.names = FALSE)
 #2. The cluster file
-write.table(lbfile_filter_list_cl_all_clean_bind,paste0(final_output_dir,basename,'_',clonal_cutoff,'.cluster.tab.txt'), sep="\t", quote = FALSE, row.names = FALSE)
+write.table(lbfile_filter_list_cl_all_clean_bind,paste0(final_output_dir,'/',basename,'_',clonal_cutoff,'.cluster.tab.txt'), sep="\t", quote = FALSE, row.names = FALSE)
 #3. Write out clonal frames with >= 3 strains
 sweep_names=c()
 for (i in 1:length(lbfile_filter_list_cl_clean_list)){
   x=as.numeric(names(lbfile_filter_list_cl_clean_list)[i])
-  write.table(lbfile_filter_list_cl_clean_list[[i]]$strain,paste0(final_output_dir,basename,'_cf_',sprintf("%03d", x),'.txt'),
+  write.table(lbfile_filter_list_cl_clean_list[[i]]$strain,paste0(final_output_dir,'/',basename,'_cf_',sprintf("%03d", x),'.txt'),
               quote = FALSE, row.names = FALSE,col.names = FALSE)
   sweep_names=c(sweep_names,paste0(basename,'_cf_',sprintf("%03d", x)))
 }
 #4. Write out list of sweeps
-write.table(sweep_names,paste0(final_output_dir, basename,'_cf_size_3.list'),quote = FALSE, row.names = FALSE,col.names = FALSE)
+write.table(sweep_names,paste0(final_output_dir,'/',basename,'_cf_size_3.list'),quote = FALSE, row.names = FALSE,col.names = FALSE)
 
 
 
